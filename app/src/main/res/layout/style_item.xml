@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
-    <FrameLayout
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/style_item_frame"
         android:layout_width="match_parent"
         android:layout_height="@dimen/frame_size"

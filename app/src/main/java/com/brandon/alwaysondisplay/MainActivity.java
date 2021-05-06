@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 public class MainActivity extends FragmentActivity {
+    // 在recycleview中加入fragment；https://stackoverflow.com/questions/37194653/fragment-replacing-in-recyclerview-item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,28 +29,42 @@ public class MainActivity extends FragmentActivity {
         rView.setAdapter(new RecyclerView.Adapter() {
             @NonNull
             @Override
-            public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 final View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.style_item, parent,false);
-                ViewHolder viewHolder = new ViewHolder(inflate) {
-                    @Override
-                    public String toString() {
-                        return super.toString();
-                    }
-                };
+                MyViewHolder viewHolder = new MyViewHolder(inflate);
                 return viewHolder;
             }
 
             @Override
             public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-                ((TextView)holder.itemView.findViewById(R.id.style_item_title)).setText("主题风格" + position);
-                holder.itemView.setTag(position);
+                ((MyViewHolder)holder).title.setText("主题风格" + position);
+                RecyclerView recyclerView = ((MyViewHolder)holder).fragment;
 
-                FrameLayout fragment = (FrameLayout) holder.itemView.findViewById(R.id.style_item_frame);
-                StyleWordsFragment styleWordsFragment = new StyleWordsFragment(position+"");
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(fragment.getId(),styleWordsFragment,position+"");
-                fragmentTransaction.commit();
+                recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this,LinearLayoutManager.HORIZONTAL,false));
+                recyclerView.setAdapter(new RecyclerView.Adapter() {
+                    @NonNull
+                    @Override
+                    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View viewIn = LayoutInflater.from(parent.getContext()).inflate(R.layout.style_item_inner,parent,false);
+                        RecyclerView.ViewHolder viewHolder = new RecyclerView.ViewHolder(viewIn) {
+                            @Override
+                            public String toString() {
+                                return super.toString();
+                            }
+                        };
+                        return viewHolder;
+                    }
+
+                    @Override
+                    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position1) {
+                        ((TextView)holder.itemView.findViewById(R.id.style_item_title_inner)).setText(position+"风格类" + position1);
+                    }
+
+                    @Override
+                    public int getItemCount() {
+                        return 100;
+                    }
+                });
             }
 
             @Override
@@ -57,5 +72,15 @@ public class MainActivity extends FragmentActivity {
                 return 100;
             }
         });
+    }
+    public class MyViewHolder extends ViewHolder{
+        TextView title;
+        RecyclerView fragment;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            title = itemView.findViewById(R.id.style_item_title);
+            fragment = itemView.findViewById(R.id.style_item_frame);
+        }
     }
 }
