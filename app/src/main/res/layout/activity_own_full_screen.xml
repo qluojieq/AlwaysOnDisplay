@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/black"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".OwnFullScreenActivity">
 
     <TextView
@@ -13,15 +13,16 @@
         android:layout_height="85px"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
 
         android:id="@+id/top_holder"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:text="返回"
-        android:gravity="center_vertical"
-        android:textColor="@color/white"
+        android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_action_back_low"
+        android:gravity="center_vertical"
+        android:text="返回是不可能返回的正如人名就是韩寒而已静室开来久那绝对是南方科技阿斯蒂芬你就按劳动法返回是不可能返回的正如人名就是韩寒而已静室开来久那绝对是南方科技阿斯蒂芬你就按劳动法"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_holder_top" />
 
@@ -38,36 +39,55 @@
         android:id="@+id/bottom_choice_control"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
         android:gravity="bottom"
         android:orientation="vertical"
-        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/show_battery_count"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:gravity="center_vertical"
+                android:text="check"
+                android:textColor="@color/white" />
+
+            <com.brandon.alwaysondisplay.BatteryView
+                android:id="@+id/battery_view"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp" />
+
+        </LinearLayout>
+
         <TextView
-            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:gravity="center_vertical"
             android:text="check"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"/>
+            android:textColor="@color/white" />
+
         <TextView
-            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:gravity="center_vertical"
             android:text="check"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"/>
+            android:textColor="@color/white" />
+
         <TextView
-            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:gravity="center_vertical"
             android:text="check"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"/>
-        <TextView
-            android:textColor="@color/white"
-            android:gravity="center_vertical"
-            android:text="check"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"/>
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
